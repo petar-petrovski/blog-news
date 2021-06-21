@@ -1,8 +1,31 @@
+<?php 
+if(isset($_POST['checkBoxArray'])){
 
-<form><button style="position:relative; float:right;" class="btn btn-primary"><a href="posts.php?source=add_post" style="color:white; text-decoration: none;">Add new post</a></button></form><br><br>
+    foreach ($_POST['checkBoxArray'] as $checkBoxValue){
+        echo $checkBoxValue;
+    }
+}
+
+?>
+<form action="" method="post">
+
+<div id="bulkOptionsContainer" class="col-xs-4">
+<select class="form-control" name="" id="">
+<option value="">Select Options</option>
+<option value="">Published</option>
+<option value="">Draft</option>
+<option value="">Delete
+</option>
+</select></div>
+<button style="position:relative; float:right;" class="btn btn-primary"><a href="posts.php?source=add_post" style="color:white; text-decoration: none;">Add new post</a></button></form><br><br>
+
 <table class="table table-bordered table-hover">
+
+
+
                 <thead>
                     <tr>
+                        <th><input id="selectAll" type="checkbox"></th>
                         <th>ID</th>
                         <th>Author</th>
                         <th>Title</th>
@@ -42,7 +65,9 @@ $sql = "SELECT * FROM posts";
         $post_date = $post['post_date'];
 
 
-        echo "<tr><td>{$post_id}</td>";
+        echo "<tr>";
+        echo "<td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='{$post_id}'></td>";
+        echo "<td>{$post_id}</td>";
         echo "<td>{$author}</td>";
         echo "<td>{$post_title}</td>";
 
@@ -74,6 +99,7 @@ $sql = "SELECT * FROM posts";
 ?>
                 </tbody>
             </table>
+            </form>
 
 <?php
 
